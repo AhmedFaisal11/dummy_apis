@@ -20,12 +20,13 @@ const USERS = [
 
 app.use(express.json());
 
-app.get('/', (req ,res) => {
+app.get('/user', (req ,res) => {
+    res.setHeader("Content-Range", "user 0-24/319");
     res.status(200).json(USERS);
 });
 
-app.post('/' , (req ,res) => {
-
+app.post('/user' , (req ,res) => {
+    res.setHeader("Content-Range", "user 0-24/319");
     const { id , name , title } = req.body;
     if(!req.body || !req.body) {
         return res.status(400).json({});
@@ -44,7 +45,9 @@ app.post('/' , (req ,res) => {
     }
 });
 
-app.put('/' , (req ,res ) => {
+app.put('/user' , (req ,res ) => {
+    res.setHeader("Content-Range", "posts 0-24/319");
+    
     const { id } = req.query;
     console.log(req.params);
     let user = USERS.find(user => user.id === id);
@@ -59,7 +62,9 @@ app.put('/' , (req ,res ) => {
     return res.status(404).json(user);
 })
 
-app.delete('/' , (req ,res ) => {
+app.delete('/user' , (req ,res ) => {
+    res.setHeader("Content-Range", "posts 0-24/319");
+    
     const { id } = req.query;
     console.log(req.params);
     let user = USERS.find(user => user.id === id);
